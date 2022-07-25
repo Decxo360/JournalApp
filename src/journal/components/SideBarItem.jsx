@@ -28,7 +28,7 @@ export const SideBarItem = ({note}) => {
             title: note.title,
             body: note.body,
             date: note.date,
-            imgURL:[]
+            imgURL:note.imgURL
         }
         dispatch(setActiveNote(active))
     }
