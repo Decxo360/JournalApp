@@ -31,7 +31,6 @@ export const startLoadingNotes = () =>{
         if(!uid) throw new Error('El UID del usuario no existe')
         const response = await loadNotes(uid);
         dispatch(setNotes(response));
-        console.log(response);
     }
 }
 
@@ -56,8 +55,7 @@ export const startUploadingFiles = (files = []) =>{
         for (const file of files) {
             fileUploadPromises.push(fileUpload(file))
         }
-
-        const photosURLS = await Promise.all(fileUploadPromises)
-        dispatch(setPhotosToActiveNote(photosURLS));
+        const photosUrls = await Promise.all(fileUploadPromises)
+        dispatch(setPhotosToActiveNote(photosUrls));
     }
 }
