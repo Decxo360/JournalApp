@@ -22,8 +22,8 @@ export const journalSlice = createSlice({
             state.notes.push(payload)
             state.savedMessage = false
         },
-        setActiveNote:(state,action)=>{
-            state.active = action.payload
+        setActiveNote:(state,{payload})=>{
+            state.active = payload
             state.savedMessage = ''
         },
         setNotes:(state,action)=>{
@@ -44,14 +44,21 @@ export const journalSlice = createSlice({
             state.savedMessage = `La nota: ${action.payload.title}, ha actualizada correctamente`
         },
         deleteNoteById:(state,action)=>{
-
+            state.active = null
+            state.notes = state.notes.filter(note=> note.id !== action.payload)
         },
         setPhotosToActiveNote:(state,action)=>{
             console.log(action.payload)
             state.active.imgURL = [...state.active.imgURL, ...action.payload]
+        },
+        clearNotes:(state)=>{
+            state.isSaving = false,
+            state.savedMessage='',
+            state.notes=[],
+            state.active=null
         }
     }
 });
 
 
-export const {addNewEmptyNote, setActiveNote, setNotes, setSaving, uptdateNote, deleteNoteById, savingNewNote, setPhotosToActiveNote} = journalSlice.actions;
+export const {addNewEmptyNote, setActiveNote, setNotes, setSaving, uptdateNote, deleteNoteById, savingNewNote, setPhotosToActiveNote, clearNotes} = journalSlice.actions;
