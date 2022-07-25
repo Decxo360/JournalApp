@@ -16,15 +16,11 @@ export const useCheckAuth = () => {
   
       onAuthStateChanged(FirebaseAuth, async(user)=>{
           if (!user) {return dispatch(logout())}
-  
           const {uid,displayName,email,photoURL} = user
-  
           dispatch(login({uid,displayName,email,photoURL}))
           dispatch(checkingCredentials('Authenticated'))
           dispatch(startLoadingNotes());
       })
-      
-  
     }, [])
 
     return status
