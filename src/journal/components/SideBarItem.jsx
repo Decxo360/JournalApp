@@ -5,32 +5,25 @@ import { useDispatch } from 'react-redux'
 import { setActiveNote } from '../../store/journal/journalSlice'
 
 
-export const SideBarItem = ({note}) => {
+export const SideBarItem = ({title = '', body='', id, date, imgURL=[]}) => {
 
     const dispatch = useDispatch();
 
     const newTitle = useMemo(()=>{
-        return note.title.length > 17
-            ? note.title.substring(0,17) + '...'
-            : note.title
-    },[note.title])
+        return title.length > 17
+            ? title.substring(0,17) + '...'
+            : title
+    },[title])
 
     const newBody = useMemo(()=>{
-        return note.body.length > 40 
-            ?   note.body.substring(0,40) + '...'
-            :   note.body
-    },[note.body])
+        return body.length > 40 
+            ?   body.substring(0,40) + '...'
+            :   body
+    },[body])
 
 
     const onActiveNote=()=>{
-        const active = {
-            id: note.id,
-            title: note.title,
-            body: note.body,
-            date: note.date,
-            imgURL:note.imgURL
-        }
-        dispatch(setActiveNote(active))
+        dispatch(setActiveNote({title,body,id,date,imgURL}))
     }
 
     return (
