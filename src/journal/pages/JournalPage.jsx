@@ -21,7 +21,7 @@ export const JournalPage = () => {
         <JournalLayout>
             {!!active ? <NoteView/> : <NothingSelectedView/>}
             <IconButton size='large'
-                disabled={!isSaving}
+                disabled={isSaving}
                 onClick={onClickNewNote}
                 sx={{
                     color:'white',
