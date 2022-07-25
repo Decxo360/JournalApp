@@ -1,4 +1,5 @@
 import { logIn, LogOut, register, singInWithgoogle } from "../../firebase/providers";
+import { clearNotes } from "../journal/journalSlice";
 import { checkingCredentials, login, logout } from "./authSlice"
 
 export const checkingAuthentication = (email, password) =>{
@@ -48,6 +49,7 @@ export const startLogOut = () =>{
     return async(dispatch)=>{
         await LogOut()
         dispatch(logout({}))
+        dispatch(clearNotes());
         dispatch(checkingCredentials('Not Authenticated'))
     }
 }
