@@ -35,7 +35,6 @@ export const startAuthenticationSignIn = ({email,password,displayName}) =>{
 }
 
 export const startLogin = ({email,password}) =>{
-    console.log({email,password});
     return async(dispatch)=>{
         dispatch(checkingCredentials('checking'))
         const {uid, photoURL,displayName , errorMessage, ok} = await logIn({email,password});

@@ -45,7 +45,6 @@ export const RegisterPage = () => {
         valores
     } = useForm(formData,formValidations)
 
-    console.log(valores);
 
     const onSubmit = (event)=>{
 
